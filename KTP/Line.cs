@@ -8,11 +8,11 @@ namespace KTP
 {
     class Line
     {
-        public int xS, yS;
-        public int xF, yF;
-
+        public int  xS, yS;
+        public int xF, yF;        
         public Line(int xS, int yS, int xF, int yF)
         {
+            //this.i = i;
             this.xS = xS;
             this.yS = yS;
             this.xF = xF;

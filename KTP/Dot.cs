@@ -19,7 +19,7 @@ namespace KTP
             this.y = y;
         }
 
-            public List<Dot> Near = new List<Dot>();
+        public List<Dot> Near = new List<Dot>();
         public Dot(List<Dot> Dot)
         {
             this.Near = Dot;
