@@ -32,7 +32,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.picture = new System.Windows.Forms.PictureBox();
             this.textBoxN = new System.Windows.Forms.TextBox();
             this.textBoxM = new System.Windows.Forms.TextBox();
@@ -52,12 +51,14 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Beige;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(12, 72);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(272, 47);
             this.button1.TabIndex = 5;
             this.button1.Text = "Draw";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label1
@@ -80,19 +81,10 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "lines";
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(119, 48);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 17);
-            this.checkBox2.TabIndex = 4;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
             // picture
             // 
             this.picture.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.picture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picture.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.picture.Location = new System.Drawing.Point(292, 12);
             this.picture.Name = "picture";
@@ -116,12 +108,15 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.MistyRose;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(205, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(79, 54);
             this.button2.TabIndex = 6;
             this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // Form1
@@ -132,14 +127,17 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBoxM);
             this.Controls.Add(this.textBoxN);
-            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Coord);
             this.Controls.Add(this.picture);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "Project 2o3";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -151,7 +149,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.PictureBox picture;
         private System.Windows.Forms.TextBox textBoxN;
         private System.Windows.Forms.TextBox textBoxM;

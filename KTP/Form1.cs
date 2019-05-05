@@ -13,6 +13,9 @@ namespace KTP
 {    
     public partial class Form1 : Form
     {
+        int DotSize = 20;
+        int LineSize = 3;
+
         Bitmap bmp;
         Graphics mat;
         Pen heal, inf, ill, lne;
@@ -44,20 +47,12 @@ namespace KTP
 
             Draw(n, m);
             picture.Image = bmp;
-        }
-        private void Button2_Click(object sender, EventArgs e)//Clear picture
-        {
-            Dotes.Clear();
-            Lines.Clear();
-            mat.Clear(Color.White);
-            picture.Image = bmp;
-        }            
-        private void Draw(int n, int m) //Drow Matrix with Green Dots
+        }                 
+        private void Draw(int n, int m) //Draw Matrix with Green Dots
         {
             Dot(n, m);
             Lin(n, m);
-            int DotSize = 20;
-            int LineSize = 4;
+
             Pen lne = new Pen(Color.Gray, LineSize);
 
             for (var i = 0; i < Lines.Count; i++)
@@ -65,13 +60,13 @@ namespace KTP
 
             SolidBrush mySolidBrush = new SolidBrush(Color.Green);
             for (var i = 0; i < Dotes.Count; i++)
-                mat.FillEllipse(mySolidBrush, Dotes[i].x-10, Dotes[i].y-10, DotSize, DotSize);
+                mat.FillEllipse(mySolidBrush, Dotes[i].x- DotSize/2, Dotes[i].y- DotSize / 2, DotSize, DotSize);
             
             if (Coord.Checked == true)//Drow № of Dots 
             {
                 mySolidBrush.Dispose();
                 for (int i = 0; i < Dotes.Count; i++)
-                    mat.DrawString("(" + Dotes[i].i + "|" + Dotes[i].j + ")", new Font("Arial", 12), Brushes.Black, Dotes[i].x - 20, Dotes[i].y - 43);
+                    mat.DrawString("(" + Dotes[i].i + "|" + Dotes[i].j + ")", new Font("Arial", 12), Brushes.Black, Dotes[i].x - 20, Dotes[i].y - 10 - DotSize);
             }         
         }
         public void Dot(int n, int m)//return Dots List
@@ -94,6 +89,17 @@ namespace KTP
                 for (var j = 0; j < m; j++)
                     Dotes.Add(new Dot(i, j, DotX[i], DotY[j]));
         }
+        public void Lin(int n, int m)//return Lines List
+        {
+            Near(n, m);
+            for (int i = 0; i != n * m; i++)
+                for (int j = 0; j != 4; j++)
+                {
+                    if (((Dotes[i].i != 0) || (Dotes[i].j != 0) || (Dotes[i].i != n) || (Dotes[i].j != m)) && (j != 3))
+                        if ((((Dotes[i].i != 0) && (Dotes[i].j != 0)) || ((Dotes[i].i != 0) && (Dotes[i].i != n)) || ((Dotes[i].i != 0) && (Dotes[i].j != m)) || ((Dotes[i].j != m) && (Dotes[i].i != n))) && (j != 2))
+                            Lines.Add(new Line(Dotes[i].x, Dotes[i].y, Dotes[i].Near[j].x, Dotes[i].Near[j].y));
+                }
+        }
         public void Near(int n, int m)//return Near of Dots List
         {
             for (int i = 0; i < Dotes.Count; i++)
@@ -110,17 +116,13 @@ namespace KTP
                 if (Dotes[i].i != 0)
                     Dotes[i].Near.Add(Dotes[i - m]);
             }
-        }
-        public void Lin(int n, int m)//return Lines List
+        }        
+        private void Button2_Click(object sender, EventArgs e)//Clear picture
         {
-            Near(n, m);            
-            for (int i = 0; i != n*m; i++)
-                for (int j = 0; j != 4; j++)
-                {
-                    if (((Dotes[i].i != 0) || (Dotes[i].j != 0) || (Dotes[i].i != n) || (Dotes[i].j != m)) && (j != 3))
-                        if ((((Dotes[i].i != 0) && (Dotes[i].j != 0)) || ((Dotes[i].i != 0) && (Dotes[i].i != n)) || ((Dotes[i].i != 0) && (Dotes[i].j != m)) || ((Dotes[i].j != m) && (Dotes[i].i != n))) && (j!=2))
-                            Lines.Add(new Line(Dotes[i].x, Dotes[i].y, Dotes[i].Near[j].x, Dotes[i].Near[j].y));
-                }
+            Dotes.Clear();
+            Lines.Clear();
+            mat.Clear(Color.White);
+            picture.Image = bmp;
         }
     }
 }

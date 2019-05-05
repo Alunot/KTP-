@@ -11,6 +11,7 @@ namespace KTP
     class Dot
     {
         public int i, j, x, y;
+        public bool S,IS,I,R;
         public Dot(int i, int j, int x, int y)
         {
             this.i = i;
