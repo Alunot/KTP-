@@ -7,3 +7,13 @@ D:\Users\Documents\МТУСИ уч\KTP\KTP-\KTP\obj\Debug\KTP.csproj.GenerateRes
 D:\Users\Documents\МТУСИ уч\KTP\KTP-\KTP\obj\Debug\KTP.csproj.CoreCompileInputs.cache
 D:\Users\Documents\МТУСИ уч\KTP\KTP-\KTP\obj\Debug\KTP.exe
 D:\Users\Documents\МТУСИ уч\KTP\KTP-\KTP\obj\Debug\KTP.pdb
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.csprojAssemblyReference.cache
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.Form1.resources
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.Properties.Resources.resources
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.csproj.GenerateResource.cache
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.csproj.CoreCompileInputs.cache
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.exe
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\obj\Debug\KTP.pdb
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\bin\Debug\KTP.exe.config
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\bin\Debug\KTP.exe
+D:\Users\Documents\MTUCI std\КТП\KTPgit\KTP-\KTP\bin\Debug\KTP.pdb
