@@ -51,6 +51,7 @@
             this.DotN = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button4 = new System.Windows.Forms.Button();
+            this.InfDot = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,6 +108,7 @@
             this.picture.Size = new System.Drawing.Size(500, 500);
             this.picture.TabIndex = 10;
             this.picture.TabStop = false;
+            this.picture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Picture_MouseClick);
             // 
             // textBoxN
             // 
@@ -157,7 +159,7 @@
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.Size = new System.Drawing.Size(35, 20);
             this.textBoxTime.TabIndex = 9;
-            this.textBoxTime.Text = "2";
+            this.textBoxTime.Text = "3";
             // 
             // textBoxChance
             // 
@@ -165,7 +167,7 @@
             this.textBoxChance.Name = "textBoxChance";
             this.textBoxChance.Size = new System.Drawing.Size(35, 20);
             this.textBoxChance.TabIndex = 7;
-            this.textBoxChance.Text = "25";
+            this.textBoxChance.Text = "70";
             // 
             // label3
             // 
@@ -203,7 +205,7 @@
             this.textBoxSpeed.Name = "textBoxSpeed";
             this.textBoxSpeed.Size = new System.Drawing.Size(40, 20);
             this.textBoxSpeed.TabIndex = 8;
-            this.textBoxSpeed.Text = "100";
+            this.textBoxSpeed.Text = "175";
             // 
             // label6
             // 
@@ -244,7 +246,7 @@
             this.textBoxDot1.Name = "textBoxDot1";
             this.textBoxDot1.Size = new System.Drawing.Size(40, 20);
             this.textBoxDot1.TabIndex = 10;
-            this.textBoxDot1.Text = "1";
+            this.textBoxDot1.Text = "55";
             // 
             // DotN
             // 
@@ -277,11 +279,22 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
+            // InfDot
+            // 
+            this.InfDot.AutoSize = true;
+            this.InfDot.Location = new System.Drawing.Point(259, 228);
+            this.InfDot.Name = "InfDot";
+            this.InfDot.Size = new System.Drawing.Size(15, 14);
+            this.InfDot.TabIndex = 24;
+            this.InfDot.UseVisualStyleBackColor = true;
+            this.InfDot.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InfDot_MouseClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 521);
+            this.Controls.Add(this.InfDot);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.DotN);
             this.Controls.Add(this.label8);
@@ -341,6 +354,7 @@
         private System.Windows.Forms.CheckBox DotN;
         public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.CheckBox InfDot;
     }
 }
 

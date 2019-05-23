@@ -8,15 +8,15 @@ namespace KTP
 {
     class Line
     {
-        public int  xS, yS;
-        public int xF, yF;        
+        public int  xS, yS, xF, yF;
+        public int State, Dot, DotN;
         public Line(int xS, int yS, int xF, int yF)
         {
-            //this.i = i;
             this.xS = xS;
             this.yS = yS;
             this.xF = xF;
             this.yF = yF;
+            this.State = 1;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace KTP
     class Dot
     {
         public int i, j, x, y;
-        public int State, Time;
+        public int State, Time, no;
         public Dot(int i, int j, int x, int y)
         {
             this.i = i;
@@ -18,6 +18,7 @@ namespace KTP
             this.y = y;
             this.State = 2;
             this.Time = 0;
+            this.no = 0;
         }
         public List<Dot> Near = new List<Dot>();
         public Dot(List<Dot> Dot)
