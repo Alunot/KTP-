@@ -52,6 +52,13 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.InfDot = new System.Windows.Forms.CheckBox();
+            this.SIRSIS = new System.Windows.Forms.CheckBox();
+            this.label_S = new System.Windows.Forms.Label();
+            this.label_I = new System.Windows.Forms.Label();
+            this.label_SR = new System.Windows.Forms.Label();
+            this.openFileMatrix = new System.Windows.Forms.OpenFileDialog();
+            this.button5 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +77,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Beige;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(12, 100);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(272, 47);
@@ -131,6 +139,7 @@
             this.button2.BackColor = System.Drawing.Color.MistyRose;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(213, 40);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(70, 54);
@@ -145,10 +154,10 @@
             this.button3.BackColor = System.Drawing.Color.Beige;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(147, 250);
+            this.button3.Location = new System.Drawing.Point(156, 275);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(136, 50);
-            this.button3.TabIndex = 11;
+            this.button3.Size = new System.Drawing.Size(130, 50);
+            this.button3.TabIndex = 50;
             this.button3.Text = "Start";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
@@ -159,7 +168,7 @@
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.Size = new System.Drawing.Size(35, 20);
             this.textBoxTime.TabIndex = 9;
-            this.textBoxTime.Text = "3";
+            this.textBoxTime.Text = "2";
             // 
             // textBoxChance
             // 
@@ -167,7 +176,7 @@
             this.textBoxChance.Name = "textBoxChance";
             this.textBoxChance.Size = new System.Drawing.Size(35, 20);
             this.textBoxChance.TabIndex = 7;
-            this.textBoxChance.Text = "70";
+            this.textBoxChance.Text = "30";
             // 
             // label3
             // 
@@ -271,9 +280,9 @@
             this.button4.Enabled = false;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(5, 250);
+            this.button4.Location = new System.Drawing.Point(12, 275);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(136, 50);
+            this.button4.Size = new System.Drawing.Size(130, 50);
             this.button4.TabIndex = 23;
             this.button4.Text = "Reset";
             this.button4.UseVisualStyleBackColor = false;
@@ -285,15 +294,87 @@
             this.InfDot.Location = new System.Drawing.Point(259, 228);
             this.InfDot.Name = "InfDot";
             this.InfDot.Size = new System.Drawing.Size(15, 14);
-            this.InfDot.TabIndex = 24;
+            this.InfDot.TabIndex = 11;
             this.InfDot.UseVisualStyleBackColor = true;
             this.InfDot.MouseClick += new System.Windows.Forms.MouseEventHandler(this.InfDot_MouseClick);
+            // 
+            // SIRSIS
+            // 
+            this.SIRSIS.AutoSize = true;
+            this.SIRSIS.Checked = true;
+            this.SIRSIS.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.SIRSIS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SIRSIS.Location = new System.Drawing.Point(12, 250);
+            this.SIRSIS.Name = "SIRSIS";
+            this.SIRSIS.Size = new System.Drawing.Size(15, 14);
+            this.SIRSIS.TabIndex = 12;
+            this.SIRSIS.UseVisualStyleBackColor = true;
+            this.SIRSIS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SIRSIS_MouseClick);
+            // 
+            // label_S
+            // 
+            this.label_S.AutoSize = true;
+            this.label_S.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_S.ForeColor = System.Drawing.Color.Red;
+            this.label_S.Location = new System.Drawing.Point(27, 251);
+            this.label_S.Name = "label_S";
+            this.label_S.Size = new System.Drawing.Size(15, 13);
+            this.label_S.TabIndex = 26;
+            this.label_S.Text = "S";
+            // 
+            // label_I
+            // 
+            this.label_I.AutoSize = true;
+            this.label_I.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_I.ForeColor = System.Drawing.Color.Orange;
+            this.label_I.Location = new System.Drawing.Point(38, 251);
+            this.label_I.Name = "label_I";
+            this.label_I.Size = new System.Drawing.Size(11, 13);
+            this.label_I.TabIndex = 27;
+            this.label_I.Text = "I";
+            // 
+            // label_SR
+            // 
+            this.label_SR.AutoSize = true;
+            this.label_SR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SR.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label_SR.Location = new System.Drawing.Point(45, 251);
+            this.label_SR.Name = "label_SR";
+            this.label_SR.Size = new System.Drawing.Size(16, 13);
+            this.label_SR.TabIndex = 28;
+            this.label_SR.Text = "R";
+            // 
+            // openFileMatrix
+            // 
+            this.openFileMatrix.FileName = "openFileMatrix";
+            // 
+            // button5
+            // 
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(81, 9);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(34, 22);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "File";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(12, 492);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(274, 20);
+            this.textBox1.TabIndex = 51;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 521);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.label_S);
+            this.Controls.Add(this.SIRSIS);
             this.Controls.Add(this.InfDot);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.DotN);
@@ -316,6 +397,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Coord);
             this.Controls.Add(this.picture);
+            this.Controls.Add(this.label_I);
+            this.Controls.Add(this.label_SR);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -355,6 +438,13 @@
         public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox InfDot;
+        private System.Windows.Forms.CheckBox SIRSIS;
+        private System.Windows.Forms.Label label_S;
+        private System.Windows.Forms.Label label_I;
+        private System.Windows.Forms.Label label_SR;
+        private System.Windows.Forms.OpenFileDialog openFileMatrix;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

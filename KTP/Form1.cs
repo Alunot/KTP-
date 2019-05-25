@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using Timer = System.Timers.Timer;
-using System.Threading;
-
-
+using System.IO;
 
 namespace KTP
 {
@@ -155,7 +148,7 @@ namespace KTP
             picture.Image = bmp;
         }
         //2.0
-        public void Button3_Click(object sender, EventArgs e)//Start/Stop Simulation
+        private void Button3_Click(object sender, EventArgs e)//Start/Stop Simulation
         {
             timer1.Interval = 100000 / Convert.ToInt32(textBoxSpeed.Text);
             if (InfDot.Checked == false)
@@ -205,8 +198,16 @@ namespace KTP
         }
         private void Susceptible(int Dot)// Ifected 3
         {
-            if ((Dotes[Dot].Time != 0) && (TimeChek >= Dotes[Dot].Time))
-                Dotes[Dot].State = 1;
+            if (SIRSIS.Checked == true)
+            {
+                if ((Dotes[Dot].Time != 0) && (TimeChek >= Dotes[Dot].Time))
+                    Dotes[Dot].State = 1;
+            }
+            else
+            {
+                if ((Dotes[Dot].Time != 0) && (TimeChek >= Dotes[Dot].Time))
+                    Dotes[Dot].State = 2;
+            }
         }
         public void Timer1_Tick(object sender, EventArgs e)// Recurs of Simulate
         {
@@ -301,7 +302,7 @@ namespace KTP
         }
         private void InfDot_MouseClick(object sender, MouseEventArgs e)// click for patient zero
         {
-            if (textBoxDot1.Enabled == true)
+            if (InfDot.Checked == true)
             {
                 textBoxDot1.Enabled = false;
                 textBoxDot1.BackColor = Color.LightGray;
@@ -314,6 +315,35 @@ namespace KTP
                 textBoxDot1.BackColor = Color.White;
                 textBoxDot1.ForeColor = Color.Black;
             }            
+        }
+        private void SIRSIS_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (SIRSIS.Checked == true)
+            {
+                label_SR.ForeColor = Color.DarkGreen;
+                label_SR.Text = ("R");
+            }
+            else
+            {
+                label_SR.ForeColor = Color.Red;
+                label_SR.Text = ("S");
+            }
+        }// Change SIR-SIS simulate
+        private void Button5_Click(object sender, EventArgs e)// upload file matrix
+        {
+            OpenFileDialog matr = new OpenFileDialog();
+            matr.InitialDirectory = "c:\\";
+            matr.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            matr.FilterIndex = 2;
+            matr.RestoreDirectory = true;
+            if (matr.ShowDialog(this) == DialogResult.OK)
+                fileread(matr.FileName);            
+        }
+        private void fileread (string filename)// read file matrix
+        {
+            string text = File.ReadAllText(filename);
+            textBox1.Text = text;
+
         }
     }
 }
