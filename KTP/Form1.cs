@@ -11,7 +11,10 @@ namespace KTP
         int DotSize = 20;
         int LineSize = 3;
 
-        int TimeChek = 0;
+        int TimeChek = 0, n, m;
+
+        bool load=false;
+        string filename;
 
         Bitmap bmp;
         Graphics mat;
@@ -24,18 +27,16 @@ namespace KTP
         SolidBrush Sus = new SolidBrush(Color.Red); //3
         SolidBrush Del = new SolidBrush(Color.White); //0
 
-        Random Chan = new Random();
-        //1.0
+        Random Chan = new Random();        
         public Form1()
         {
             InitializeComponent();
             bmp = new Bitmap(picture.Width, picture.Height);
             mat = Graphics.FromImage(bmp);
         }
+        //1.0
         private void Button1_Click(object sender, EventArgs e) //Drow Matrix with Green Dots and Lines
         {
-            Dotes.Clear();
-            Lines.Clear();
             mat.Clear(Color.White);
 
             Draw();
@@ -43,14 +44,21 @@ namespace KTP
         }
         private void Draw() //Draw Matrix with Yellow Dots
         {
-            int n = Convert.ToInt32(textBoxN.Text);
-            int m = Convert.ToInt32(textBoxM.Text);
+            if ((n!= Convert.ToInt32(textBoxN.Text))||(m!= Convert.ToInt32(textBoxN.Text)))
+            {
+                Dotes.Clear();
+                Lines.Clear();
+                n = Convert.ToInt32(textBoxN.Text);
+                m = Convert.ToInt32(textBoxM.Text);
+            }
+            
             DotSize = 240 / (n + m);
 
-            if (Dotes.Count == 0)
+            if ((Dotes.Count == 0) && (Lines.Count == 0))
+            {               
                 Dot(n, m);
-            if (Lines.Count == 0) 
                 Lin(n, m);
+            }            
 
             for (var i = 0; i < Lines.Count; i++)
                 Draw(Lines[i].State, Lines[i].xS, Lines[i].yS, Lines[i].xF, Lines[i].yF);
@@ -63,6 +71,15 @@ namespace KTP
             if (DotN.Checked == true)//Draw № of Dots             
                 for (int i = 0; i < Dotes.Count; i++)
                     mat.DrawString("(" + i + ")", new Font("Arial", 8), Brushes.Black, Dotes[i].x + DotSize / 4, Dotes[i].y + DotSize / 4);
+
+            {
+                textBoxM.BackColor = Color.White;
+                textBoxM.ForeColor = Color.Black;
+                textBoxM.ReadOnly = false;
+                textBoxN.BackColor = Color.White;
+                textBoxN.ForeColor = Color.Black;
+                textBoxN.ReadOnly = false;
+            }// load file
         }
         private void Draw(int State, int x, int y)//Draw Dots
         {
@@ -123,7 +140,7 @@ namespace KTP
                         Lines[k].Dot = i;
                         Lines[k].DotN = Dotes[i].Near[j].no;
                         k++;
-                    }                            
+                    }
                 }
         }
         public void Near(int n, int m)//return Near of Dots List
@@ -224,15 +241,18 @@ namespace KTP
         private void Button4_Click(object sender, EventArgs e)// Reset
         {
             mat.Clear(Color.White);
-            for (var i = 0; i < Dotes.Count; i++)
-                Dotes[i].State = 2;           
+            if (load)
+                fileread(filename);
+            else
+            {
+                for (var i = 0; i < Dotes.Count; i++)
+                    Dotes[i].State = 2;
+                timer1.Interval = 100000 / Convert.ToInt32(textBoxSpeed.Text);
+                Dotes[Convert.ToInt32(textBoxDot1.Text)].State = 3;
+                Dotes[Convert.ToInt32(textBoxDot1.Text)].Time = TimeChek + Convert.ToInt32(textBoxTime.Text);
+            }                  
 
             Draw();
-
-            timer1.Interval = 100000 / Convert.ToInt32(textBoxSpeed.Text);
-            Dotes[Convert.ToInt32(textBoxDot1.Text)].State = 3;
-            Dotes[Convert.ToInt32(textBoxDot1.Text)].Time = TimeChek + Convert.ToInt32(textBoxTime.Text);
-
             picture.Image = bmp;
 
             timer1.Enabled = true;
@@ -300,7 +320,7 @@ namespace KTP
             //string Col = "x= " + e.X.ToString() + "  y= " + e.Y.ToString();
             //MessageBox.Show(Col);
         }
-        private void InfDot_MouseClick(object sender, MouseEventArgs e)// click for patient zero
+        private void InfDot_MouseClick(object sender, MouseEventArgs e)// Click for patient zero
         {
             if (InfDot.Checked == true)
             {
@@ -329,21 +349,144 @@ namespace KTP
                 label_SR.Text = ("S");
             }
         }// Change SIR-SIS simulate
-        private void Button5_Click(object sender, EventArgs e)// upload file matrix
+        private void Button5_Click(object sender, EventArgs e)// Load file matrix
         {
             OpenFileDialog matr = new OpenFileDialog();
-            matr.InitialDirectory = "c:\\";
-            matr.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            matr.FilterIndex = 2;
-            matr.RestoreDirectory = true;
-            if (matr.ShowDialog(this) == DialogResult.OK)
-                fileread(matr.FileName);            
+            if (matr.ShowDialog(this) == DialogResult.OK)                
+                fileread(matr.FileName);
+            filename = matr.FileName;
         }
-        private void fileread (string filename)// read file matrix
+        private void fileread(string filename)// Read file matrix
         {
-            string text = File.ReadAllText(filename);
-            textBox1.Text = text;
+            Dotes.Clear();
+            Lines.Clear();
 
+            int i = 0, j = 0;            
+            int[] StateD = new int[i];
+            int[] StateL = new int[i];
+            string[] text = File.ReadAllLines(filename);
+
+            foreach (string str in text)
+            {
+                if (str[0] == 'C')
+                {
+                    textBoxN.Text = str[2].ToString() + str[3].ToString();
+                    n = Convert.ToInt32(str[2].ToString() + str[3].ToString());
+                    textBoxM.Text = str[5].ToString() + str[6].ToString();
+                    m = Convert.ToInt32(str[5].ToString() + str[6].ToString());
+                }
+
+                Array.Resize(ref StateD, i+1);
+                Array.Resize(ref StateL, j+1);
+
+                if (str[0] == 'D')
+                {   
+                    StateD[i] = Convert.ToInt32(str[6].ToString());
+                    i++;
+                }
+                else if (str[0] == 'L')
+                {     
+                    StateL[j] = Convert.ToInt32(str[6].ToString());
+                    j++;
+                }
+            }
+            Dot(n, m, StateD);
+            Lin(n, m, StateL);
+            {
+                textBoxM.BackColor = Color.LightGray;
+                textBoxM.ForeColor = Color.Gray;
+                textBoxM.ReadOnly = true;
+                textBoxN.BackColor = Color.LightGray;
+                textBoxN.ForeColor = Color.Gray;
+                textBoxN.ReadOnly = true;
+                InfDot.Checked = true;
+                textBoxDot1.Enabled = false;
+                textBoxDot1.BackColor = Color.LightGray;
+                textBoxDot1.ForeColor = Color.Gray;
+                load = true;
+            }// lock box
         }
+        public void Dot(int n, int m, int[] State)//return Dots List State
+        {
+            int Lenght;
+            int[] DotX = new int[m];
+            int[] DotY = new int[n];
+
+            if (picture.Width / (n + 1) > picture.Height / (m + 1))
+                Lenght = picture.Height / (m);
+            else
+                Lenght = picture.Width / (n);
+
+            for (var i = 0; i < m; i++)
+                DotX[i] = Lenght / 2 + Lenght * i;
+            for (var i = 0; i < n; i++)
+                DotY[i] = Lenght / 2 + Lenght * i;
+
+            for (var i = 0; i < n; i++)
+                for (var j = 0; j < m; j++)
+                    Dotes.Add(new Dot(i, j, DotX[j], DotY[i]));
+            for (int i = 0; i != Dotes.Count; i++)
+            {
+                Dotes[i].no = i;
+                Dotes[i].State = State[i];
+                if (State[i] == 3)
+                    Dotes[i].Time = 2;
+            }
+        }
+        public void Lin(int n, int m, int[] State)//return Lines List State
+        {
+            Near(n, m);
+            int k = 0;
+            for (int i = 0; i != Dotes.Count; i++)
+                for (int j = 0; j != Dotes[i].Near.Count; j++)
+                {
+                    if ((Dotes[i].x <= Dotes[i].Near[j].x) && (Dotes[i].y <= Dotes[i].Near[j].y))
+                    {
+                        if (Dotes[i].x == Dotes[i].Near[j].x)
+                            Lines.Add(new Line(Dotes[i].x, Dotes[i].y + DotSize / 2, Dotes[i].Near[j].x, Dotes[i].Near[j].y - DotSize / 2));
+                        else
+                            Lines.Add(new Line(Dotes[i].x + DotSize / 2, Dotes[i].y, Dotes[i].Near[j].x - DotSize / 2, Dotes[i].Near[j].y));
+                        Lines[k].Dot = i;
+                        Lines[k].DotN = Dotes[i].Near[j].no;
+                        Lines[k].State = State[k];
+                        k++;
+                    }
+                }
+        }
+        private void Button6_Click(object sender, EventArgs e) // Save matrix to file
+        {
+            string filename = @"D:\Users\Documents\MTUCI std\СиАОД\SIAOD\KTP-\KTP\Matrix.txt";
+            string[] text = new string[Dotes.Count + Lines.Count+1];
+
+            int n = Convert.ToInt32(textBoxN.Text);
+            int m = Convert.ToInt32(textBoxM.Text);
+
+            if (n < 10)
+                text[0] = "C 0" + n + " " + m;
+            else if (m < 10)
+                text[0] = "C " + n + " 0" + m;
+            else
+                text[0] = "C " + n + " " + m;
+
+            if ((n < 10)&& (m < 10))
+                text[0] = "C 0" + n + " 0" + m;
+
+            for (var i = 0; i < Dotes.Count; i++)
+                if (i <10)
+                    text[i+1] = "D 00" + i + " " + Dotes[i].State;
+                else if (i < 100)
+                    text[i + 1] = "D 0" + i + " " + Dotes[i].State;
+                else
+                    text[i + 1] = "D " + i + " " + Dotes[i].State;
+            for (var i = Dotes.Count; i < Dotes.Count + Lines.Count; i++)
+                if (i - Dotes.Count < 10)
+                    text[i + 1] = "L 00" + (i - Dotes.Count) + " " + Lines[i - Dotes.Count].State;
+                else if (i - Dotes.Count < 100)
+                    text[i + 1] = "L 0" + (i - Dotes.Count) + " " + Lines[i - Dotes.Count].State;
+                else
+                    text[i + 1] = "L " + (i - Dotes.Count) + " " + Lines[i - Dotes.Count].State;
+
+            File.WriteAllLines(filename, text);
+        }        
     }
 }

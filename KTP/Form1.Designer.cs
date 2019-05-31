@@ -58,7 +58,7 @@
             this.label_SR = new System.Windows.Forms.Label();
             this.openFileMatrix = new System.Windows.Forms.OpenFileDialog();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -351,27 +351,31 @@
             // button5
             // 
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(81, 9);
+            this.button5.Location = new System.Drawing.Point(81, 10);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(34, 22);
+            this.button5.Size = new System.Drawing.Size(48, 22);
             this.button5.TabIndex = 0;
             this.button5.Text = "File";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             // 
-            // textBox1
+            // button6
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 492);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 20);
-            this.textBox1.TabIndex = 51;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(135, 10);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(48, 22);
+            this.button6.TabIndex = 52;
+            this.button6.Text = "Save";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 521);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label_S);
             this.Controls.Add(this.SIRSIS);
@@ -444,7 +448,7 @@
         private System.Windows.Forms.Label label_SR;
         private System.Windows.Forms.OpenFileDialog openFileMatrix;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button6;
     }
 }
 
