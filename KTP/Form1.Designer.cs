@@ -59,7 +59,11 @@
             this.openFileMatrix = new System.Windows.Forms.OpenFileDialog();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.graph = new System.Windows.Forms.PictureBox();
+            this.Statis = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
             this.SuspendLayout();
             // 
             // Coord
@@ -154,7 +158,7 @@
             this.button3.BackColor = System.Drawing.Color.Beige;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(156, 275);
+            this.button3.Location = new System.Drawing.Point(156, 250);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(130, 50);
             this.button3.TabIndex = 50;
@@ -280,7 +284,7 @@
             this.button4.Enabled = false;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(12, 275);
+            this.button4.Location = new System.Drawing.Point(12, 250);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(130, 50);
             this.button4.TabIndex = 23;
@@ -304,7 +308,7 @@
             this.SIRSIS.Checked = true;
             this.SIRSIS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SIRSIS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SIRSIS.Location = new System.Drawing.Point(12, 250);
+            this.SIRSIS.Location = new System.Drawing.Point(113, 170);
             this.SIRSIS.Name = "SIRSIS";
             this.SIRSIS.Size = new System.Drawing.Size(15, 14);
             this.SIRSIS.TabIndex = 12;
@@ -316,7 +320,7 @@
             this.label_S.AutoSize = true;
             this.label_S.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_S.ForeColor = System.Drawing.Color.Red;
-            this.label_S.Location = new System.Drawing.Point(27, 251);
+            this.label_S.Location = new System.Drawing.Point(128, 171);
             this.label_S.Name = "label_S";
             this.label_S.Size = new System.Drawing.Size(15, 13);
             this.label_S.TabIndex = 26;
@@ -327,7 +331,7 @@
             this.label_I.AutoSize = true;
             this.label_I.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_I.ForeColor = System.Drawing.Color.Orange;
-            this.label_I.Location = new System.Drawing.Point(38, 251);
+            this.label_I.Location = new System.Drawing.Point(139, 171);
             this.label_I.Name = "label_I";
             this.label_I.Size = new System.Drawing.Size(11, 13);
             this.label_I.TabIndex = 27;
@@ -338,7 +342,7 @@
             this.label_SR.AutoSize = true;
             this.label_SR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SR.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label_SR.Location = new System.Drawing.Point(45, 251);
+            this.label_SR.Location = new System.Drawing.Point(146, 171);
             this.label_SR.Name = "label_SR";
             this.label_SR.Size = new System.Drawing.Size(16, 13);
             this.label_SR.TabIndex = 28;
@@ -370,11 +374,53 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(12, 306);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(274, 50);
+            this.button7.TabIndex = 53;
+            this.button7.Text = "Graphics";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
+            // graph
+            // 
+            this.graph.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.graph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graph.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.graph.Enabled = false;
+            this.graph.Location = new System.Drawing.Point(12, 362);
+            this.graph.Name = "graph";
+            this.graph.Size = new System.Drawing.Size(274, 64);
+            this.graph.TabIndex = 54;
+            this.graph.TabStop = false;
+            this.graph.Visible = false;
+            // 
+            // Statis
+            // 
+            this.Statis.Enabled = false;
+            this.Statis.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Statis.Location = new System.Drawing.Point(12, 432);
+            this.Statis.Multiline = true;
+            this.Statis.Name = "Statis";
+            this.Statis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Statis.Size = new System.Drawing.Size(274, 80);
+            this.Statis.TabIndex = 55;
+            this.Statis.Text = "Dotes №| State | Kol ";
+            this.Statis.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 521);
+            this.Controls.Add(this.Statis);
+            this.Controls.Add(this.graph);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label_S);
@@ -413,6 +459,7 @@
             this.Text = "Project 2o3";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -449,6 +496,9 @@
         private System.Windows.Forms.OpenFileDialog openFileMatrix;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.PictureBox graph;
+        private System.Windows.Forms.TextBox Statis;
     }
 }
 
