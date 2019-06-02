@@ -36,7 +36,7 @@ namespace KTP
             bmp = new Bitmap(picture.Width, picture.Height);
             mat = Graphics.FromImage(bmp);
         }
-        //1.0
+        //1.0-----------------------------------------------------------------------------------------------------
         private void Button1_Click(object sender, EventArgs e) //Drow Matrix with Green Dots and Lines
         {
             mat.Clear(Color.White);
@@ -166,7 +166,7 @@ namespace KTP
             mat.Clear(Color.White);
             picture.Image = bmp;
         }
-        //2.0
+        //2.0-----------------------------------------------------------------------------------------------------
         private void Button3_Click(object sender, EventArgs e)//Start/Stop Simulation
         {
             timer1.Interval = 100000 / Convert.ToInt32(textBoxSpeed.Text);
@@ -269,7 +269,7 @@ namespace KTP
 
             timer1.Enabled = true;
         }
-        //3.0
+        //3.0-----------------------------------------------------------------------------------------------------
         private void Picture_MouseClick(object sender, MouseEventArgs e) // Change State of picture elements
         {
             for (int i = 0; i < Dotes.Count; i++) // Chenge Dotes
@@ -518,7 +518,7 @@ namespace KTP
 
             File.WriteAllLines(filename, text);
         }
-        //4.0
+        //4.0-----------------------------------------------------------------------------------------------------
         private void Button7_Click(object sender, EventArgs e)// Chang Window, make Graphics and Stats
         {
             if (Gclick == false)
