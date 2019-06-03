@@ -8,13 +8,13 @@ namespace KTP
 {
     public partial class Form1 : Form
     {
-        int DotSize = 20;
+        int DotSize = 30;
         int LineSize = 3;
 
         int TimeChek = 0, n, m;
 
-        bool load=false;
-        bool Gclick= false;
+        bool load = false;
+        bool Gclick = false;
 
         string filename, st;
 
@@ -29,7 +29,7 @@ namespace KTP
         SolidBrush Sus = new SolidBrush(Color.Red); //3
         SolidBrush Del = new SolidBrush(Color.White); //0
 
-        Random Chan = new Random();        
+        Random Chan = new Random();
         public Form1()
         {
             InitializeComponent();
@@ -40,39 +40,43 @@ namespace KTP
         private void Button1_Click(object sender, EventArgs e) //Drow Matrix with Green Dots and Lines
         {
             mat.Clear(Color.White);
+            grap.Series["SusGraph"].Points.Clear();
+            grap.Series["RefGraph"].Points.Clear();
+            grap.Series["InfGraph"].Points.Clear();
 
             Draw();
             picture.Image = bmp;
+            StatAndGraph(TimeChek);
         }
         private void Draw() //Draw Matrix with Yellow Dots
         {
-            if ((n!= Convert.ToInt32(textBoxN.Text))||(m!= Convert.ToInt32(textBoxN.Text)))
+            if ((n != Convert.ToInt32(textBoxN.Text)) || (m != Convert.ToInt32(textBoxN.Text)))
             {
                 Dotes.Clear();
                 Lines.Clear();
                 n = Convert.ToInt32(textBoxN.Text);
                 m = Convert.ToInt32(textBoxM.Text);
             }
-            
-            DotSize = 240 / (n + m);
+
+            DotSize = 320 / (n + m);
 
             if ((Dotes.Count == 0) && (Lines.Count == 0))
-            {               
+            {
                 Dot(n, m);
                 Lin(n, m);
-            }            
+            }
 
             for (var i = 0; i < Lines.Count; i++)
                 Draw(Lines[i].State, Lines[i].xS, Lines[i].yS, Lines[i].xF, Lines[i].yF);
             for (var i = 0; i < Dotes.Count; i++)
                 Draw(Dotes[i].State, Dotes[i].x, Dotes[i].y);
-            
+
             if (Coord.Checked == true)//Draw Coord of Dots             
                 for (int i = 0; i < Dotes.Count; i++)
                     mat.DrawString("(" + Dotes[i].i + "|" + Dotes[i].j + ")", new Font("Arial", 10), Brushes.Black, Dotes[i].x - 14, Dotes[i].y - 6 - DotSize);
             if (DotN.Checked == true)//Draw № of Dots             
                 for (int i = 0; i < Dotes.Count; i++)
-                    mat.DrawString("(" + i + ")", new Font("Arial", 8), Brushes.Black, Dotes[i].x + DotSize / 4, Dotes[i].y + DotSize / 4);
+                    mat.DrawString("(" + i + ")", new Font("Arial", 7), Brushes.Black, Dotes[i].x + DotSize / 4, Dotes[i].y + DotSize / 4);
 
             {
                 textBoxM.BackColor = Color.White;
@@ -161,6 +165,10 @@ namespace KTP
         }
         private void Button2_Click(object sender, EventArgs e)//Clear picture
         {
+            grap.Series["SusGraph"].Points.Clear();
+            grap.Series["RefGraph"].Points.Clear();
+            grap.Series["InfGraph"].Points.Clear();
+
             Dotes.Clear();
             Lines.Clear();
             mat.Clear(Color.White);
@@ -194,7 +202,12 @@ namespace KTP
                 button4.Enabled = false;
                 button4.BackColor = Color.PapayaWhip;
                 button4.ForeColor = Color.Gray;
-            }            
+            }
+            if (Gclick == true)
+                grap.Visible = true;
+            else
+                grap.Visible = false;
+
         }
         private void Live(int Chance, int Time)//Simulate Ifected
         {
@@ -208,15 +221,15 @@ namespace KTP
         private void Infected(int Dot, int Chance, int Time)// Ifected 2
         {
             for (int i = 0; i != Dotes[Dot].Near.Count; i++)
-                if ((Chance > Chan.Next(0, 100)) && (Dotes[Dot].Near[i].State == 3) && (Dotes[Dot].State==2))
+                if ((Chance > Chan.Next(0, 100)) && (Dotes[Dot].Near[i].State == 3) && (Dotes[Dot].State == 2))
                     for (int k = 0; k != Lines.Count; k++)
-                        if (((Lines[k].Dot == Dot) && (Lines[k].DotN == Dotes[Dot].Near[i].no)) || ((Lines[k].DotN == Dot) && (Lines[k].Dot == Dotes[Dot].Near[i].no))) 
+                        if (((Lines[k].Dot == Dot) && (Lines[k].DotN == Dotes[Dot].Near[i].no)) || ((Lines[k].DotN == Dot) && (Lines[k].Dot == Dotes[Dot].Near[i].no)))
                             if (Lines[k].State != 0)
                             {
                                 Dotes[Dot].State = 3;
                                 Dotes[Dot].Time = TimeChek + Time;
                                 Dotes[Dot].kol++;
-                            }                
+                            }
         }
         private void Susceptible(int Dot)// Ifected 3
         {
@@ -243,8 +256,7 @@ namespace KTP
                 Draw(Dotes[i].State, Dotes[i].x, Dotes[i].y);
             picture.Image = bmp;
 
-            Stat();
-            Graph();
+            StatAndGraph(TimeChek);
         }
         private void Button4_Click(object sender, EventArgs e)// Reset
         {
@@ -257,12 +269,15 @@ namespace KTP
                 {
                     Dotes[i].kol = 0;
                     Dotes[i].State = 2;
-                }                    
+                }
                 timer1.Interval = 100000 / Convert.ToInt32(textBoxSpeed.Text);
                 Dotes[Convert.ToInt32(textBoxDot1.Text)].State = 3;
                 Dotes[Convert.ToInt32(textBoxDot1.Text)].Time = TimeChek + Convert.ToInt32(textBoxTime.Text);
                 Dotes[Convert.ToInt32(textBoxDot1.Text)].kol++;
-            }                
+            }
+            grap.Series["SusGraph"].Points.Clear();
+            grap.Series["RefGraph"].Points.Clear();
+            grap.Series["InfGraph"].Points.Clear();
 
             Draw();
             picture.Image = bmp;
@@ -274,8 +289,8 @@ namespace KTP
         {
             for (int i = 0; i < Dotes.Count; i++) // Chenge Dotes
                 if (((e.X >= Dotes[i].x - DotSize / 2) && (e.X <= Dotes[i].x + DotSize / 2)) && ((e.Y >= Dotes[i].y - DotSize / 2) && (e.Y <= Dotes[i].y + DotSize / 2)))
-                    if (Dotes[i].State == 2)                    
-                        if (InfDot.Checked==true)
+                    if (Dotes[i].State == 2)
+                        if (InfDot.Checked == true)
                         {
                             Dotes[i].State = 3;
                             Draw(Dotes[i].State, Dotes[i].x, Dotes[i].y);
@@ -286,7 +301,7 @@ namespace KTP
                         {
                             Dotes[i].State = 0;
                             Draw(Dotes[i].State, Dotes[i].x, Dotes[i].y);
-                            Dotes[Convert.ToInt32(textBoxDot1.Text)].kol=0;
+                            Dotes[Convert.ToInt32(textBoxDot1.Text)].kol = 0;
                         }
                     else
                     {
@@ -296,7 +311,7 @@ namespace KTP
                     }
             for (int i = 0; i < Lines.Count; i++) // Chenge Lines
             {
-                if (((e.X >= Lines[i].xS-1) && (e.X <= Lines[i].xF-1)) && ((e.Y >= Lines[i].yS+1) && (e.Y <= Lines[i].yF+1)))
+                if (((e.X >= Lines[i].xS - 1) && (e.X <= Lines[i].xF - 1)) && ((e.Y >= Lines[i].yS + 1) && (e.Y <= Lines[i].yF + 1)))
                     if (Lines[i].State != 0)
                     {
                         Lines[i].State = 0;
@@ -318,7 +333,7 @@ namespace KTP
                         Lines[i].State = 1;
                         Draw(Lines[i].State, Lines[i].xS, Lines[i].yS, Lines[i].xF, Lines[i].yF);
                     }
-                if (((e.X >= Lines[i].xS+1) && (e.X <= Lines[i].xF+1)) && ((e.Y >= Lines[i].yS-1) && (e.Y <= Lines[i].yF-1)))
+                if (((e.X >= Lines[i].xS + 1) && (e.X <= Lines[i].xF + 1)) && ((e.Y >= Lines[i].yS - 1) && (e.Y <= Lines[i].yF - 1)))
                     if (Lines[i].State != 0)
                     {
                         Lines[i].State = 0;
@@ -349,7 +364,7 @@ namespace KTP
                 textBoxDot1.Enabled = true;
                 textBoxDot1.BackColor = Color.White;
                 textBoxDot1.ForeColor = Color.Black;
-            }            
+            }
         }
         private void SIRSIS_MouseClick(object sender, MouseEventArgs e)// Change SIR-SIS simulate
         {
@@ -367,7 +382,7 @@ namespace KTP
         private void Button5_Click(object sender, EventArgs e)// Load file matrix
         {
             OpenFileDialog matr = new OpenFileDialog();
-            if (matr.ShowDialog(this) == DialogResult.OK)                
+            if (matr.ShowDialog(this) == DialogResult.OK)
                 Fileread(matr.FileName);
             filename = matr.FileName;
         }
@@ -399,11 +414,11 @@ namespace KTP
                 if (str[0] == 'D')
                 {
                     StateD[i] = Convert.ToInt32(str[6].ToString());
-                    kolD[i] = Convert.ToInt32(str[8].ToString() + str[9].ToString() + str[10].ToString());                    
+                    kolD[i] = Convert.ToInt32(str[8].ToString() + str[9].ToString() + str[10].ToString());
                     i++;
                 }
                 else if (str[0] == 'L')
-                {     
+                {
                     StateL[j] = Convert.ToInt32(str[6].ToString());
                     j++;
                 }
@@ -475,7 +490,7 @@ namespace KTP
         private void Button6_Click(object sender, EventArgs e) // Save matrix to file
         {
             string filename = @"D:\Users\Documents\MTUCI std\СиАОД\SIAOD\KTP-\KTP\Matrix.txt";
-            string[] text = new string[Dotes.Count + Lines.Count+1];
+            string[] text = new string[Dotes.Count + Lines.Count + 1];
 
             int n = Convert.ToInt32(textBoxN.Text);
             int m = Convert.ToInt32(textBoxM.Text);
@@ -487,7 +502,7 @@ namespace KTP
             else
                 text[0] = "C " + n + " " + m;
 
-            if ((n < 10)&& (m < 10))
+            if ((n < 10) && (m < 10))
                 text[0] = "C 0" + n + " 0" + m;
 
             for (var i = 0; i < Dotes.Count; i++)
@@ -500,10 +515,10 @@ namespace KTP
                 else
                     Dotes[i].koll = " " + Dotes[i].kol;
             }
-            
+
             for (var i = 0; i < Dotes.Count; i++)
-                if (i <10)
-                    text[i+1] = "D 00" + i + " " + Dotes[i].State + Dotes[i].koll;
+                if (i < 10)
+                    text[i + 1] = "D 00" + i + " " + Dotes[i].State + Dotes[i].koll;
                 else if (i < 100)
                     text[i + 1] = "D 0" + i + " " + Dotes[i].State + Dotes[i].koll;
                 else
@@ -530,44 +545,48 @@ namespace KTP
         {
             if (click == true)
             {
-                graph.Visible = true;
-                graph.Enabled = true;
-
+                grap.Enabled = true;
                 Statis.Visible = true;
                 Statis.Enabled = true;
 
-                //this.Height = 650;                
+                this.Height = 750;
             }
             else
             {
-                graph.Visible = false;
-                graph.Enabled = false;
-
+                grap.Enabled = false;
                 Statis.Visible = false;
                 Statis.Enabled = false;
 
-                //this.Height = 560;
+                this.Height = 556;
             }
         }
-        public void Stat()// make Stats
+        public void StatAndGraph(int time)// Make Graphics and Stats
         {
+            int kolR = 0, kolI = 0, kolS = 0;
+            //stats---------------------------------------------
             st = "Dotes №| State | Kol" + "\r\n";
             for (int i = 0; i < Dotes.Count; i++)
             {
-
                 if (i < 100)
                     if (i < 10)
                         st = st + i + "            |" + Dotes[i].State + "         |" + Dotes[i].kol + "\r\n";
                     else
                         st = st + i + "          |" + Dotes[i].State + "         |" + Dotes[i].kol + "\r\n";
                 else
-                    st = st + i + "        |" + Dotes[i].State + "         |" + Dotes[i].kol + "\r\n";                
-            }
-            Statis.Text =st;
-        }
-        public void Graph()// make Graphics
-        {
+                    st = st + i + "        |" + Dotes[i].State + "         |" + Dotes[i].kol + "\r\n";
 
+                if (Dotes[i].State == 3)
+                    kolS++;
+                else if (Dotes[i].State == 2)
+                    kolI++;
+                else if (Dotes[i].State == 1)
+                    kolR++;
+            }
+            Statis.Text = st;
+            //graph---------------------------------------------
+            grap.Series["SusGraph"].Points.AddXY(time, kolS);
+            grap.Series["RefGraph"].Points.AddXY(time, kolR);
+            grap.Series["InfGraph"].Points.AddXY(time, kolI);
         }
     }
 }

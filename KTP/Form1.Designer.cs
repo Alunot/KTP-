@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Coord = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,10 +64,10 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.graph = new System.Windows.Forms.PictureBox();
             this.Statis = new System.Windows.Forms.TextBox();
+            this.grap = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grap)).BeginInit();
             this.SuspendLayout();
             // 
             // Coord
@@ -128,7 +132,7 @@
             this.textBoxN.Name = "textBoxN";
             this.textBoxN.Size = new System.Drawing.Size(35, 20);
             this.textBoxN.TabIndex = 1;
-            this.textBoxN.Text = "10";
+            this.textBoxN.Text = "16";
             // 
             // textBoxM
             // 
@@ -136,7 +140,7 @@
             this.textBoxM.Name = "textBoxM";
             this.textBoxM.Size = new System.Drawing.Size(35, 20);
             this.textBoxM.TabIndex = 2;
-            this.textBoxM.Text = "10";
+            this.textBoxM.Text = "16";
             // 
             // button2
             // 
@@ -383,43 +387,64 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(274, 50);
             this.button7.TabIndex = 53;
-            this.button7.Text = "Graphics";
+            this.button7.Text = "Graphics and Status";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
-            // 
-            // graph
-            // 
-            this.graph.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.graph.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graph.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.graph.Enabled = false;
-            this.graph.Location = new System.Drawing.Point(12, 362);
-            this.graph.Name = "graph";
-            this.graph.Size = new System.Drawing.Size(274, 64);
-            this.graph.TabIndex = 54;
-            this.graph.TabStop = false;
-            this.graph.Visible = false;
             // 
             // Statis
             // 
             this.Statis.Enabled = false;
             this.Statis.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Statis.Location = new System.Drawing.Point(12, 432);
+            this.Statis.Location = new System.Drawing.Point(12, 362);
             this.Statis.Multiline = true;
             this.Statis.Name = "Statis";
             this.Statis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Statis.Size = new System.Drawing.Size(274, 80);
+            this.Statis.Size = new System.Drawing.Size(274, 150);
             this.Statis.TabIndex = 55;
             this.Statis.Text = "Dotes №| State | Kol ";
             this.Statis.Visible = false;
+            // 
+            // grap
+            // 
+            this.grap.BackColor = System.Drawing.SystemColors.Control;
+            this.grap.BorderlineColor = System.Drawing.SystemColors.Control;
+            this.grap.BorderlineWidth = 0;
+            this.grap.BorderSkin.PageColor = System.Drawing.SystemColors.Control;
+            chartArea1.AlignmentStyle = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.PlotPosition | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.AxesView)));
+            chartArea1.Name = "ChartArea1";
+            chartArea1.ShadowColor = System.Drawing.SystemColors.Control;
+            this.grap.ChartAreas.Add(chartArea1);
+            this.grap.Location = new System.Drawing.Point(-35, 510);
+            this.grap.Name = "grap";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Red;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            series1.Name = "SusGraph";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Gold;
+            series2.Name = "InfGraph";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series3.Name = "RefGraph";
+            this.grap.Series.Add(series1);
+            this.grap.Series.Add(series2);
+            this.grap.Series.Add(series3);
+            this.grap.Size = new System.Drawing.Size(862, 205);
+            this.grap.TabIndex = 56;
+            this.grap.TabStop = false;
+            this.grap.Text = "chart1";
+            this.grap.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
+            this.grap.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 521);
+            this.ClientSize = new System.Drawing.Size(804, 675);
             this.Controls.Add(this.Statis);
-            this.Controls.Add(this.graph);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -449,6 +474,7 @@
             this.Controls.Add(this.picture);
             this.Controls.Add(this.label_I);
             this.Controls.Add(this.label_SR);
+            this.Controls.Add(this.grap);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -457,9 +483,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Project 2o3";
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graph)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,8 +522,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.PictureBox graph;
         private System.Windows.Forms.TextBox Statis;
+        private System.Windows.Forms.DataVisualization.Charting.Chart grap;
     }
 }
 
