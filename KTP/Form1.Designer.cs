@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Coord = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,8 +68,10 @@
             this.button7 = new System.Windows.Forms.Button();
             this.Statis = new System.Windows.Forms.TextBox();
             this.grap = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // Coord
@@ -222,7 +226,7 @@
             this.textBoxSpeed.Name = "textBoxSpeed";
             this.textBoxSpeed.Size = new System.Drawing.Size(40, 20);
             this.textBoxSpeed.TabIndex = 8;
-            this.textBoxSpeed.Text = "175";
+            this.textBoxSpeed.Text = "500";
             // 
             // label6
             // 
@@ -263,13 +267,11 @@
             this.textBoxDot1.Name = "textBoxDot1";
             this.textBoxDot1.Size = new System.Drawing.Size(40, 20);
             this.textBoxDot1.TabIndex = 10;
-            this.textBoxDot1.Text = "55";
+            this.textBoxDot1.Text = "136";
             // 
             // DotN
             // 
             this.DotN.AutoSize = true;
-            this.DotN.Checked = true;
-            this.DotN.CheckState = System.Windows.Forms.CheckState.Checked;
             this.DotN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DotN.Location = new System.Drawing.Point(119, 72);
             this.DotN.Name = "DotN";
@@ -309,8 +311,6 @@
             // SIRSIS
             // 
             this.SIRSIS.AutoSize = true;
-            this.SIRSIS.Checked = true;
-            this.SIRSIS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SIRSIS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SIRSIS.Location = new System.Drawing.Point(113, 170);
             this.SIRSIS.Name = "SIRSIS";
@@ -345,12 +345,12 @@
             // 
             this.label_SR.AutoSize = true;
             this.label_SR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_SR.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label_SR.ForeColor = System.Drawing.Color.Red;
             this.label_SR.Location = new System.Drawing.Point(146, 171);
             this.label_SR.Name = "label_SR";
-            this.label_SR.Size = new System.Drawing.Size(16, 13);
+            this.label_SR.Size = new System.Drawing.Size(15, 13);
             this.label_SR.TabIndex = 28;
-            this.label_SR.Text = "R";
+            this.label_SR.Text = "S";
             // 
             // openFileMatrix
             // 
@@ -393,13 +393,13 @@
             // 
             // Statis
             // 
-            this.Statis.Enabled = false;
             this.Statis.Font = new System.Drawing.Font("MS UI Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Statis.Location = new System.Drawing.Point(12, 362);
             this.Statis.Multiline = true;
             this.Statis.Name = "Statis";
+            this.Statis.ReadOnly = true;
             this.Statis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Statis.Size = new System.Drawing.Size(274, 150);
+            this.Statis.Size = new System.Drawing.Size(130, 150);
             this.Statis.TabIndex = 55;
             this.Statis.Text = "Dotes №| State | Kol ";
             this.Statis.Visible = false;
@@ -410,40 +410,68 @@
             this.grap.BorderlineColor = System.Drawing.SystemColors.Control;
             this.grap.BorderlineWidth = 0;
             this.grap.BorderSkin.PageColor = System.Drawing.SystemColors.Control;
-            chartArea1.AlignmentStyle = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.PlotPosition | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.AxesView)));
-            chartArea1.Name = "ChartArea1";
-            chartArea1.ShadowColor = System.Drawing.SystemColors.Control;
-            this.grap.ChartAreas.Add(chartArea1);
+            chartArea3.AlignmentStyle = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.PlotPosition | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.AxesView)));
+            chartArea3.Name = "ChartArea1";
+            chartArea3.ShadowColor = System.Drawing.SystemColors.Control;
+            this.grap.ChartAreas.Add(chartArea3);
             this.grap.Location = new System.Drawing.Point(-35, 510);
             this.grap.Name = "grap";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Red;
-            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
-            series1.Name = "SusGraph";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Gold;
-            series2.Name = "InfGraph";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series3.Name = "RefGraph";
-            this.grap.Series.Add(series1);
-            this.grap.Series.Add(series2);
-            this.grap.Series.Add(series3);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Color = System.Drawing.Color.Red;
+            series5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            series5.Name = "SusGraph";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Color = System.Drawing.Color.Gold;
+            series6.Name = "InfGraph";
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series7.Name = "RefGraph";
+            this.grap.Series.Add(series5);
+            this.grap.Series.Add(series6);
+            this.grap.Series.Add(series7);
             this.grap.Size = new System.Drawing.Size(862, 205);
             this.grap.TabIndex = 56;
             this.grap.TabStop = false;
             this.grap.Text = "chart1";
             this.grap.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
-            this.grap.Visible = false;
+            // 
+            // chart1
+            // 
+            this.chart1.BackColor = System.Drawing.SystemColors.Control;
+            this.chart1.BorderlineColor = System.Drawing.SystemColors.Control;
+            this.chart1.BorderlineWidth = 0;
+            this.chart1.BorderSkin.PageColor = System.Drawing.SystemColors.Control;
+            chartArea4.AlignmentStyle = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.PlotPosition | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentStyles.AxesView)));
+            chartArea4.Name = "ChartArea1";
+            chartArea4.ShadowColor = System.Drawing.SystemColors.Control;
+            this.chart1.ChartAreas.Add(chartArea4);
+            this.chart1.Location = new System.Drawing.Point(148, 362);
+            this.chart1.Name = "chart1";
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series8.Color = System.Drawing.Color.Gold;
+            series8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            series8.IsValueShownAsLabel = true;
+            series8.Name = "SusGraph";
+            series8.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.BrightPastel;
+            series8.ShadowColor = System.Drawing.SystemColors.Control;
+            this.chart1.Series.Add(series8);
+            this.chart1.Size = new System.Drawing.Size(138, 150);
+            this.chart1.TabIndex = 57;
+            this.chart1.TabStop = false;
+            this.chart1.Text = "chart1";
+            this.chart1.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
+            this.chart1.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 675);
+            this.ClientSize = new System.Drawing.Size(804, 517);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.Statis);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -485,6 +513,7 @@
             this.Text = "Project 2o3";
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,6 +553,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox Statis;
         private System.Windows.Forms.DataVisualization.Charting.Chart grap;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

@@ -203,11 +203,6 @@ namespace KTP
                 button4.BackColor = Color.PapayaWhip;
                 button4.ForeColor = Color.Gray;
             }
-            if (Gclick == true)
-                grap.Visible = true;
-            else
-                grap.Visible = false;
-
         }
         private void Live(int Chance, int Time)//Simulate Ifected
         {
@@ -541,21 +536,19 @@ namespace KTP
             else Gclick = false;
             Window(Gclick);
         }
-        public void Window(bool click)//Chang Window
+        public void Window(bool click)//Chang Window for Graphics and Stats
         {
             if (click == true)
             {
-                grap.Enabled = true;
                 Statis.Visible = true;
-                Statis.Enabled = true;
+                chart1.Visible = true;
 
                 this.Height = 750;
             }
             else
             {
-                grap.Enabled = false;
                 Statis.Visible = false;
-                Statis.Enabled = false;
+                chart1.Visible = false;
 
                 this.Height = 556;
             }
@@ -584,9 +577,15 @@ namespace KTP
             }
             Statis.Text = st;
             //graph---------------------------------------------
-            grap.Series["SusGraph"].Points.AddXY(time, kolS);
-            grap.Series["RefGraph"].Points.AddXY(time, kolR);
-            grap.Series["InfGraph"].Points.AddXY(time, kolI);
+            grap.Series["SusGraph"].Points.AddY(kolS);
+            grap.Series["RefGraph"].Points.AddY(kolR);
+            grap.Series["InfGraph"].Points.AddY(kolI);
+            chart1.Series[0].Points.Clear();
+            chart1.Series["SusGraph"].Points.AddY(kolR);
+            chart1.Series["SusGraph"].Points.AddY(kolI);
+            chart1.Series["SusGraph"].Points.AddY(kolS);
+
+
         }
     }
 }
